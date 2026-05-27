@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HabboPhotoFixer</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>Lilith</Authors>
+    <Copyright>Lilith</Copyright>
+    <ApplicationIcon>FortuneIcon.ico</ApplicationIcon>
+    <Company>Lilith</Company>
+    <Description></Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="My Project\**" />
+    <EmbeddedResource Remove="My Project\**" />
+    <None Remove="My Project\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Flazzy.dll" />
+    <None Remove="FortuneIcon.ico" />
+    <None Remove="ProjectExternalDependencies.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Flazzy">
+      <HintPath>Flazzy.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
