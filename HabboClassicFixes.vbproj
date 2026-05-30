@@ -18,14 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Flazzy.dll" />
     <None Remove="FortuneIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Flazzy">
-      <HintPath>Flazzy.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Hypo.Flazzy" Version="0.4.0" />
   </ItemGroup>
 
 </Project>
