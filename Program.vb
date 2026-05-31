@@ -105,11 +105,13 @@ Module Program
             ("EnableStackFix", Sub() EnableStackTileFix(Flash))
         }}
     }
+        Dim AppliedPatches As Integer = 0
         If patches.ContainsKey(RequestedPatch) Then
             For Each patch In patches(RequestedPatch)
                 Try
                     Console.WriteLine($"Applying {patch.Name} ...")
                     patch.Action.Invoke()
+                    AppliedPatches += 1
                     Console.WriteLine("")
                 Catch ex As Exception
                     Console.WriteLine($"[{ex.Message}]")
@@ -117,13 +119,17 @@ Module Program
                 End Try
             Next
         End If
-        Using fileStream = File.Open(TargetSwf, FileMode.Create)
-            Using fileWriter = New FlashWriter(fileStream)
-                Console.WriteLine("Saving edited client ...")
-                Flash.Assemble(fileWriter, CompressionKind.ZLib)
+        If AppliedPatches > 0 Then
+            Using fileStream = File.Open(TargetSwf, FileMode.Create)
+                Using fileWriter = New FlashWriter(fileStream)
+                    Console.WriteLine("Saving edited client ...")
+                    Flash.Assemble(fileWriter, CompressionKind.ZLib)
+                End Using
             End Using
-        End Using
-        Console.WriteLine("Ready! Restart the client to see the changes.")
+            Console.WriteLine("Ready! Restart the client to see the changes.")
+        Else
+            Console.WriteLine("No patches could be applied!")
+        End If
     End Sub
 
     Function GetClientPath() As String
